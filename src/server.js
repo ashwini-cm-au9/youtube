@@ -1,5 +1,6 @@
-const express=require('express')
+import express from 'express'
 const app=express()
+import connectDB from './db/index.js'
 const port=3000
 app.get("/",(req,res)=>{
     res.send("healthchcek")
@@ -19,6 +20,7 @@ app.get("/api",(req,res)=>{
     res.json(data)
 })
 
-app.listen(port,()=>{
+app.listen(port,async()=>{
+    await connectDB()
     console.log("listeing to",port)
 })
